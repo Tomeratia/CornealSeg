@@ -12,8 +12,9 @@
 *SUSTech-SYSU Fluorescein Staining Dataset*
 
 [Overview](#-overview) •
+[Background](#-background) •
 [Dataset](#-dataset) •
-[Methods](#-methodology) •
+[Pipeline](#-pipeline) •
 [Results](#-results) •
 [Usage](#-how-to-run)
 
@@ -26,8 +27,6 @@
 - [Overview](#-overview)
 - [Background](#-background)
 - [Dataset](#-dataset)
-- [Dataset Examples](#-dataset-examples)
-- [Methodology](#-methodology)
 - [Pipeline](#-pipeline)
 - [Results](#-results)
 - [Key Findings](#-key-findings)
@@ -46,15 +45,9 @@ This project implements a **U-Net style decoder with a ResNet34 encoder** for au
 
 | # | Experiment | Description |
 |:-:|------------|-------------|
-| 1️ | **Scratch (no ROI)** | Train from scratch without any masking |
+| 1 | **Scratch (no ROI)** | Train from scratch without any masking |
 | 2 | **Pretrained (no ROI)** | ImageNet pretrained encoder, no masking |
-| 3️ | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
-
----
-
-##  Pipeline
-
-<img src="assets/pipeline.PNG" alt="Pipeline overview" width="800">
+| 3 | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
 
 ---
 
@@ -97,51 +90,69 @@ We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
 
 >  Dataset download link available in `data/dataset_url`
 
----
-
-##  Dataset Examples
+### Dataset Examples
 
 Below is a sample image from the dataset showing a fluorescein-stained corneal image with ulcer annotation overlay:
 
 <img src="assets/sample_overlay.jpg" alt="Corneal ulcer with annotation overlay" width="500">
 
-*Fluorescein-stained slit-lamp image with ulcer boundaries marked in green and cornea boundary in red. The green/yellow fluorescence indicates damaged corneal epithelium (ulcer regions).*
+*Fluorescein-stained slit-lamp image with ulcer boundaries marked. The green/yellow fluorescence indicates damaged corneal epithelium (ulcer regions).*
 
 ---
 
-##  Methodology
+##  Pipeline
 
-### Model Architecture
+<img src="assets/pipeline.PNG" alt="Pipeline overview" width="800">
 
+### Pipeline Steps
+
+#### 1️ Data Loading & Preprocessing
+- **Input**: Raw fluorescein-stained slit-lamp images (variable resolution)
+- **Resize**: All images resized to **256×256** pixels using bilinear interpolation
+- **Normalization**: Pixel values normalized to [-1, 1] range
+
+#### 2️ ROI Masking (Optional)
+When enabled (`use_roi=True`):
+- Load cornea boundary mask from `corneaLabels/`
+- Apply mask: `masked_image = image × cornea_mask`
+- Pixels outside cornea are set to **zero (black)**
+- This focuses the model on the relevant anatomical region
+
+#### 3️ Data Augmentation (Training Only)
+Applied **on-the-fly** during training to increase data diversity:
+
+| Augmentation | Parameters | Applied To |
+|--------------|------------|------------|
+| **Horizontal Flip** | 50% probability | Image + Mask |
+| **Random Rotation** | ±12 degrees | Image + Mask |
+| **Brightness** | ±12% adjustment | Image only |
+| **Contrast** | ±12% adjustment | Image only |
+
+> **Important**: Geometric augmentations (flip, rotation) are applied identically to both image and mask to maintain alignment. Color augmentations are applied only to the image.
+
+#### 4️ Model Architecture (ResUNet)
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    ResUNet Architecture                      │
 ├─────────────────────────────────────────────────────────────┤
-│  Encoder: ResNet34 (pretrained on ImageNet)                 │
-│  Decoder: U-Net style with skip connections                 │
-│  Output:  1-channel sigmoid (binary segmentation)           │
+│  Encoder: ResNet34 (optionally pretrained on ImageNet)      │
+│  Decoder: U-Net style with transposed convolutions          │
+│  Skip Connections: Concatenate features at each level       │
+│  Output:  Single-channel logits → Sigmoid → Binary mask     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Loss Function
+#### 5️ Training Process
+- **Loss Function**: `0.5 × BCE + 0.5 × Dice Loss` (handles class imbalance)
+- **Optimizer**: AdamW (lr=2e-4, weight_decay=1e-4)
+- **Scheduler**: ReduceLROnPlateau (patience=3)
+- **Epochs**: 15
 
-Combined loss for handling class imbalance:
-
-```
-Loss = 0.5 × BCEWithLogitsLoss + 0.5 × DiceLoss
-```
-
-### ROI Masking Strategy
-
-The **ROI (Region of Interest)** approach masks everything **outside the cornea** using `corneaLabels`:
-
-```
-masked_image = original_image × cornea_mask
-```
-
-This focuses the model's attention on the relevant anatomical region, reducing false positives from background artifacts (eyelids, eyelashes, etc.).
-
-> **Note:** When ROI masking is enabled, pixels outside the cornea boundary are set to zero (black) before being fed to the model. This helps the network focus exclusively on the corneal region.
+#### 6️ Inference & Evaluation
+- Forward pass through trained model
+- Apply sigmoid activation to get probabilities
+- Threshold at 0.5 for binary prediction
+- Compute **Dice Score** and **IoU** against ground truth
 
 ### Evaluation Metrics
 
@@ -174,7 +185,7 @@ Pretrained + ROI      ███████████████░░░░�
                       0.0        0.5        1.0
 ```
 
-### Training Details
+### Training Hyperparameters
 
 | Hyperparameter | Value |
 |----------------|-------|
@@ -292,8 +303,6 @@ pandas>=1.3.0
 matplotlib>=3.4.0
 scikit-learn>=0.24.0
 opencv-python>=4.5.0
-albumentations>=1.0.0
-segmentation-models-pytorch>=0.3.0
 jupyter>=1.0.0
 tqdm>=4.62.0
 ```
@@ -315,4 +324,3 @@ tqdm>=4.62.0
 ##  License
 
 This project is for **academic and research purposes** only.
-
