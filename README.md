@@ -37,19 +37,7 @@
 
 ---
 
-##  Overview
 
-This project implements a **U-Net style decoder with a ResNet34 encoder** for automatic segmentation of corneal ulcers from fluorescein-stained slit-lamp images. We explore how **transfer learning** and **anatomical priors** (cornea-based ROI masking) can improve segmentation accuracy compared to training from scratch.
-
-### Experiments
-
-| # | Experiment | Description |
-|:-:|------------|-------------|
-| 1 | **Scratch (no ROI)** | Train from scratch without any masking |
-| 2 | **Pretrained (no ROI)** | ImageNet pretrained encoder, no masking |
-| 3 | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
-
----
 
 ##  Background
 
@@ -63,6 +51,19 @@ Corneal ulcers are a serious ophthalmic condition that can lead to **vision loss
 -  Fast, real-time analysis
 -  Consistent and objective measurements
 -  Accurate localization of ulcer regions
+
+---
+##  Overview
+
+This project implements a **U-Net style decoder with a ResNet34 encoder** for automatic segmentation of corneal ulcers from fluorescein-stained slit-lamp images. We explore how **transfer learning** and **anatomical priors** (cornea-based ROI masking) can improve segmentation accuracy compared to training from scratch.
+
+### Experiments
+
+| # | Experiment | Description |
+|:-:|------------|-------------|
+| 1 | **Scratch (no ROI)** | Train from scratch without any masking |
+| 2 | **Pretrained (no ROI)** | ImageNet pretrained encoder, no masking |
+| 3 | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
 
 ---
 
