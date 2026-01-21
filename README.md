@@ -7,7 +7,7 @@
 ![ResNet](https://img.shields.io/badge/Encoder-ResNet34-blue?style=for-the-badge)
 ![Dice](https://img.shields.io/badge/Best%20Dice-0.760-success?style=for-the-badge)
 
-**Automatic segmentation of corneal ulcers using transfer learning and anatomical ROI masking**
+**Segmentation of corneal ulcers using transfer learning and anatomical ROI masking**
 
 *SUSTech-SYSU Fluorescein Staining Dataset*
 
