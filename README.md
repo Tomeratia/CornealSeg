@@ -70,6 +70,7 @@ This project implements a **U-Net style decoder with a ResNet34 encoder** for au
 ##  Dataset
 
 We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
+>  Dataset Link: https://doi.org/10.6084/m9.figshare.10247501
 
 ### Dataset Components
 
@@ -89,7 +90,7 @@ We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
 | Validation | 53 | Hyperparameter tuning |
 | Test | 54 | Final evaluation |
 
->  Dataset download link available in `data/dataset_url`
+
 
 ### Dataset Examples
 
