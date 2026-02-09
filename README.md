@@ -52,6 +52,16 @@ Corneal ulcers are a serious ophthalmic condition that can lead to **vision loss
 -  Consistent and objective measurements
 -  Accurate localization of ulcer regions
 
+### Visual Example
+
+Below is a sample image from the dataset showing a fluorescein-stained corneal image with ulcer annotation overlay:
+
+<div align="center">
+<img src="assets/sample_overlay.jpg" alt="Corneal ulcer with annotation overlay" width="500">
+</div>
+
+*Fluorescein-stained slit-lamp image with ulcer boundaries marked. The green/yellow fluorescence indicates damaged corneal epithelium (ulcer regions).*
+
 ---
 ##  Overview
 
@@ -89,16 +99,6 @@ We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
 | Train | 247 | Model training |
 | Validation | 53 | Hyperparameter tuning |
 | Test | 54 | Final evaluation |
-
-
-
-### Dataset Examples
-
-Below is a sample image from the dataset showing a fluorescein-stained corneal image with ulcer annotation overlay:
-
-<img src="assets/sample_overlay.jpg" alt="Corneal ulcer with annotation overlay" width="500">
-
-*Fluorescein-stained slit-lamp image with ulcer boundaries marked. The green/yellow fluorescence indicates damaged corneal epithelium (ulcer regions).*
 
 ---
 
