@@ -7,7 +7,7 @@
 ![ResNet](https://img.shields.io/badge/Encoder-ResNet34-blue?style=for-the-badge)
 ![Dice](https://img.shields.io/badge/Best%20Dice-0.760-success?style=for-the-badge)
 
-**Automatic segmentation of corneal ulcers using transfer learning and anatomical ROI masking**
+**Segmentation of corneal ulcers using transfer learning and anatomical ROI masking**
 
 *SUSTech-SYSU Fluorescein Staining Dataset*
 
@@ -37,19 +37,7 @@
 
 ---
 
-##  Overview
 
-This project implements a **U-Net style decoder with a ResNet34 encoder** for automatic segmentation of corneal ulcers from fluorescein-stained slit-lamp images. We explore how **transfer learning** and **anatomical priors** (cornea-based ROI masking) can improve segmentation accuracy compared to training from scratch.
-
-### Experiments
-
-| # | Experiment | Description |
-|:-:|------------|-------------|
-| 1 | **Scratch (no ROI)** | Train from scratch without any masking |
-| 2 | **Pretrained (no ROI)** | ImageNet pretrained encoder, no masking |
-| 3 | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
-
----
 
 ##  Background
 
@@ -65,10 +53,24 @@ Corneal ulcers are a serious ophthalmic condition that can lead to **vision loss
 -  Accurate localization of ulcer regions
 
 ---
+##  Overview
+
+This project implements a **U-Net style decoder with a ResNet34 encoder** for automatic segmentation of corneal ulcers from fluorescein-stained slit-lamp images. We explore how **transfer learning** and **anatomical priors** (cornea-based ROI masking) can improve segmentation accuracy compared to training from scratch.
+
+### Experiments
+
+| # | Experiment | Description |
+|:-:|------------|-------------|
+| 1 | **Scratch (no ROI)** | Train from scratch without any masking |
+| 2 | **Pretrained (no ROI)** | ImageNet pretrained encoder, no masking |
+| 3 | **Pretrained + ROI** | Pretrained encoder + mask outside cornea region |
+
+---
 
 ##  Dataset
 
 We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
+>  Dataset Link: https://doi.org/10.6084/m9.figshare.10247501
 
 ### Dataset Components
 
@@ -88,7 +90,7 @@ We use the **SUSTech-SYSU** corneal ulcer fluorescein-staining dataset.
 | Validation | 53 | Hyperparameter tuning |
 | Test | 54 | Final evaluation |
 
->  Dataset download link available in `data/dataset_url`
+
 
 ### Dataset Examples
 
