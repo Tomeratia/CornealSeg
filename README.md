@@ -315,13 +315,17 @@ tqdm>=4.62.0
 
 ##  References
 
-1. **Dataset**: Deng, L., et al. "SUSTech-SYSU: A Benchmark for Clinical Corneal Ulcer Fluorescein Staining Image Segmentation"
+1. **Dataset**: Deng, L., et al. (2020). "SUSTech-SYSU: A Benchmark for Clinical Corneal Ulcer Fluorescein Staining Image Segmentation." *Nature Scientific Data*.
 
-2. **U-Net**: Ronneberger, O., Fischer, P., & Brox, T. (2015). "U-Net: Convolutional Networks for Biomedical Image Segmentation"
+2. **U-Net**: Ronneberger, O., Fischer, P., & Brox, T. (2015). "U-Net: Convolutional Networks for Biomedical Image Segmentation." *MICCAI 2015*.
 
-3. **ResNet**: He, K., et al. (2016). "Deep Residual Learning for Image Recognition"
+3. **ResNet**: He, K., et al. (2016). "Deep Residual Learning for Image Recognition." *CVPR 2016*.
 
-4. **Transfer Learning in Medical Imaging**: Tajbakhsh, N., et al. (2016). "Convolutional Neural Networks for Medical Image Analysis: Full Training or Fine Tuning?"
+4. **Transfer Learning in Medical Imaging**: Tajbakhsh, N., et al. (2016). "Convolutional Neural Networks for Medical Image Analysis: Full Training or Fine Tuning?" *IEEE Transactions on Medical Imaging*.
+
+5. **Adjacent Scale Fusion**: Wang, Z., Lyu, J., Luo, W., & Tang, X. (2021). "Adjacent scale fusion and corneal position embedding for corneal ulcer segmentation." *SpringerLink*.
+
+6. **Semi-MsST-GAN**: Wang, T., et al. (2022). "Semi-MsST-GAN: A semi-supervised segmentation method for corneal ulcer segmentation in slit-lamp images." *PubMed*.
 
 ---
 
