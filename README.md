@@ -174,8 +174,8 @@ Applied **on-the-fly** during training to increase data diversity:
 | Method | Test Dice ↑ | Test IoU ↑ | Improvement |
 |--------|:-----------:|:----------:|:-----------:|
 | Scratch (no ROI) | 0.656 | 0.552 | baseline |
-| Pretrained (no ROI) | 0.712 | 0.603 | +8.5% Dice |
-| **Pretrained + ROI** | **0.760** | **0.657** | **+15.8% Dice** |
+| Pretrained (no ROI) | 0.712 | 0.603 | +5.6% Dice |
+| **Pretrained + ROI** | **0.760** | **0.657** | **+10.4% Dice** |
 
 ### Performance Comparison
 
