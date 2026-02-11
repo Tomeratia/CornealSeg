@@ -41,13 +41,15 @@
 
 ##  Background
 
-Corneal ulcers are a serious ophthalmic condition that can lead to **vision loss** if not diagnosed and monitored accurately. Manual annotation of ulcer regions is:
+A corneal ulcer is an open sore on the cornea—the transparent front layer of the eye. As a serious ocular condition, it requires precise diagnosis and consistent monitoring to prevent permanent vision loss.
+
+While accurate assessment is critical, the current practice of manual annotation of ulcer regions is inherently limited by several factors:
 
 -  **Time-consuming** - requires significant clinical expertise
 -  **Subjective** - varies between clinicians
 -  **Inconsistent** - difficult to track progression over time
 
-**Automatic segmentation** aims to assist clinical workflows by providing:
+To overcome these clinical bottlenecks, automatic segmentation aims to streamline workflows by providing:
 -  Fast, real-time analysis
 -  Consistent and objective measurements
 -  Accurate localization of ulcer regions
