@@ -206,22 +206,19 @@ Pretrained + ROI      ███████████████░░░░�
 ##  Key Findings
 
 ### 1. Transfer Learning Matters
-> **+8.5% Dice improvement** when using ImageNet pretrained weights vs. training from scratch
+> **+5.6% Dice improvement** when using ImageNet pretrained weights vs. training from scratch
 
 Pretrained encoders provide better feature extraction, especially beneficial for small medical imaging datasets (only 247 training samples).
 
 ### 2. Anatomical Priors Boost Performance
-> **+6.7% additional Dice improvement** when adding ROI masking to Pretrained model
+> **+4.8% additional Dice improvement** when adding ROI masking to Pretrained model
 
 Masking irrelevant background regions (eyelids, eyelashes) helps the model focus on the target anatomy and reduces false positives.
 
 ### 3. Combined Approach is Best
-> **+15.8% total improvement** using both pretrained weights + ROI masking
+> **+10.4% total improvement** using both pretrained weights + ROI masking
 
 The synergy between transfer learning and domain-specific preprocessing yields the best results.
-
-### 4. Faster Convergence with ROI
-The Pretrained+ROI model reached val_dice > 0.77 by epoch 6, while the Pretrained model reached similar performance only by epoch 11.
 
 ---
 
